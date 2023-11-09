@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../AnimatingCircles.dart';
+
 class SecondOnBoardingScreen extends StatefulWidget {
   const SecondOnBoardingScreen({super.key});
 
@@ -34,23 +36,29 @@ class _SecondOnBoardingScreenState extends State<SecondOnBoardingScreen>
       body: SafeArea(
         child: Column(
           children: [
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (BuildContext context, Widget? child) {
-                return Transform.translate(
-                  offset: Offset(
-                    0,
-                    _controller.value * -60,
-                  ),
-                );
-              },
-              child: Center(
-                child: Image.asset(
-                  'assets/character-2.png',
-                  width: 200,
-                  height: 200,
-                ),
-              ),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                AnimatingCircles(),
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (BuildContext context, Widget? child) {
+                    return Transform.translate(
+                      offset: Offset(
+                        0,
+                        _controller.value * -60,
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/character-2.png',
+                          width: 200,
+                          height: 200,
+                        ),
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
             SizedBox(
               height: 40,
